@@ -27,5 +27,5 @@ spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
-          storage: 100Gi
-      storageClassName: fast
+          storage: 1Gi
+      storageClassName: standard-rwo

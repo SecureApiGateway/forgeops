@@ -19,7 +19,7 @@ spec:
       limits:
         memory: 1366Mi
     volumeClaimSpec:
-      storageClassName: fast
+      storageClassName: standard-rwo
       resources:
         requests:
-          storage: 10Gi
+          storage: 1Gi

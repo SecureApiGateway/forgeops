@@ -15,7 +15,7 @@ spec:
               cpu: 2000m
             limits:
               memory: 5Gi
-              cpu: 3000
+              cpu: "3000"
       initContainers:
         - name: initialize
           imagePullPolicy: Always
@@ -28,5 +28,5 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 100Gi
-        storageClassName: fast
+            storage: 1Gi
+        storageClassName: standard-rwo
