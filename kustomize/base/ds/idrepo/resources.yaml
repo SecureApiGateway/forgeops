@@ -281,5 +281,5 @@ spec:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 10Gi
-        storageClassName: fast
+            storage: 1Gi
+        storageClassName: standard-rwo
