@@ -19,8 +19,8 @@ images:
 - name: git-server
   newName: us-docker.pkg.dev/forgeops-public/images/git-server
 - name: idm
-  newName: europe-west4-docker.pkg.dev/sbat-gcr-develop/sapig-docker-artifact/custom-idm
-  newTag: 7.5.2-PR-17144
+  newName: us-docker.pkg.dev/forgeops-public/images/idm
+  newTag: 7.5.0
 - name: ig
   newName: us-docker.pkg.dev/forgeops-public/images/ig
   newTag: 2024.3.0
