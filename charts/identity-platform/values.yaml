@@ -162,7 +162,7 @@ platform:
   #       platform-truststore-certificates --from-file=/path/to/my/certificates
   truststore:
     secret:
-      enabled: false
+      enabled: true
       name: platform-truststore-certificates
       key: certificates
       create: false
