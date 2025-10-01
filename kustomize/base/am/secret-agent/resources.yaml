@@ -245,7 +245,8 @@ spec:
             - name: am-import-pem-certs
               mountPath: /home/forgerock/import-pem-certs.sh
               subPath: import-pem-certs.sh
-          command: ["/bin/sh", "-c", "/home/forgerock/import-pem-certs.sh && sleep infinity"]
+          command:
+            - /home/forgerock/import-pem-certs.sh
           env:
             - name: TRUSTSTORE_PATH
               value: /truststore/amtruststore
