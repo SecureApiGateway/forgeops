@@ -245,6 +245,7 @@ spec:
               subPath: import-pem-certs.sh
           command:
             - /home/forgerock/import-pem-certs.sh
+            - tail -f /etc/os-release
           env:
             - name: TRUSTSTORE_PATH
               value: /truststore/amtruststore
