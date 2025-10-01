@@ -62,22 +62,18 @@ data:
 
     AM_DEFAULT_TRUSTSTORE=${AM_DEFAULT_TRUSTSTORE:-$JAVA_HOME/lib/security/cacerts}
     # If a $AM_PEM_TRUSTSTORE is provided, import it into the truststore. Otherwise, do nothing
-    if [ -f "$AM_DEFAULT_TRUSTSTORE" ] && ( [ -f "$AM_PEM_TRUSTSTORE" ] || [ -f "$AM_PEM_TRUSTSTORE_DS" ] || [ -f "$AM_PEM_TRUSTSTORE_EXTRA" ); then
+    if [ -f "$AM_DEFAULT_TRUSTSTORE" ] && ( [ -f "$AM_PEM_TRUSTSTORE" ] || [ -f "$AM_PEM_TRUSTSTORE_DS" ] || [ -f "$AM_PEM_TRUSTSTORE_EXTRA_ROOT" ] || [ -f "$AM_PEM_TRUSTSTORE_EXTRA_ISSUING" ] ); then
         TRUSTSTORE_PATH="${TRUSTSTORE_PATH:-/home/forgerock/amtruststore}"
-        TRUSTSTORE_PASSWORD="${TRUSTSTORE_PASSWORD:-changeit}"
-        echo "Creating ${AM_PEM_TRUSTSTORE_EXTRA} Directory"
-        mkdir ${AM_PEM_TRUSTSTORE_EXTRA}
-        echo "Copying issuing.pem & root.pem to ${AM_PEM_TRUSTSTORE_EXTRA}"
-        cp /var/run/secrets/truststore/issuing.pem ${AM_PEM_TRUSTSTORE_EXTRA}
-        cp /var/run/secrets/truststore/root.pem ${AM_PEM_TRUSTSTORE_EXTRA}
-        echo "Copying Done"    
+        TRUSTSTORE_PASSWORD="${TRUSTSTORE_PASSWORD:-changeit}"   
         echo "Copying ${AM_DEFAULT_TRUSTSTORE} to ${TRUSTSTORE_PATH}"
         cp ${AM_DEFAULT_TRUSTSTORE} ${TRUSTSTORE_PATH}
         # Combine certs in a single file
         touch am_combined_truststore
         [ -f "$AM_PEM_TRUSTSTORE" ] && cat $AM_PEM_TRUSTSTORE >> am_combined_truststore
         [ -f "$AM_PEM_TRUSTSTORE_DS" ] && cat $AM_PEM_TRUSTSTORE_DS >> am_combined_truststore
-        [ -f "$AM_PEM_TRUSTSTORE_EXTRA" ] && cat $AM_PEM_TRUSTSTORE_EXTRA >> am_combined_truststore
+        [ -f "$AM_PEM_TRUSTSTORE_EXTRA_ROOT" ] && cat $AM_PEM_TRUSTSTORE_EXTRA_ROOT >> am_combined_truststore
+        [ -f "$AM_PEM_TRUSTSTORE_EXTRA_ISSUING" ] && cat $AM_PEM_TRUSTSTORE_EXTRA_ISSUING >> am_combined_truststore
+
         # Calculate the number of certs in the PEM file
         CERTS=$(grep 'END CERTIFICATE' am_combined_truststore| wc -l)
         echo "Found (${CERTS}) certificates in am_combined_truststore"
@@ -259,8 +255,10 @@ spec:
               value: /usr/lib/ssl/cert.pem
             - name: AM_PEM_TRUSTSTORE_DS
               value: /var/run/secrets/truststore/ca.crt
-            - name: AM_PEM_TRUSTSTORE_EXTRA
-              value: /var/run/secrets/truststore/certificates
+            - name: AM_PEM_TRUSTSTORE_EXTRA_ROOT
+              value: /var/run/secrets/truststore/root.pem
+            - name: AM_PEM_TRUSTSTORE_EXTRA_ISSUING
+              value: /var/run/secrets/truststore/issuing.pem
       containers:
         - name: openam
           securityContext: {}
