@@ -65,6 +65,12 @@ data:
     if [ -f "$AM_DEFAULT_TRUSTSTORE" ] && ( [ -f "$AM_PEM_TRUSTSTORE" ] || [ -f "$AM_PEM_TRUSTSTORE_DS" ] || [ -f "$AM_PEM_TRUSTSTORE_EXTRA" ); then
         TRUSTSTORE_PATH="${TRUSTSTORE_PATH:-/home/forgerock/amtruststore}"
         TRUSTSTORE_PASSWORD="${TRUSTSTORE_PASSWORD:-changeit}"
+        echo "Creating ${AM_PEM_TRUSTSTORE_EXTRA} Directory"
+        mkdir ${AM_PEM_TRUSTSTORE_EXTRA}
+        echo "Copying issuing.pem & root.pem to ${AM_PEM_TRUSTSTORE_EXTRA}"
+        cp /var/run/secrets/truststore/issuing.pem ${AM_PEM_TRUSTSTORE_EXTRA}
+        cp /var/run/secrets/truststore/root.pem ${AM_PEM_TRUSTSTORE_EXTRA}
+        echo "Copying Done"    
         echo "Copying ${AM_DEFAULT_TRUSTSTORE} to ${TRUSTSTORE_PATH}"
         cp ${AM_DEFAULT_TRUSTSTORE} ${TRUSTSTORE_PATH}
         # Combine certs in a single file
