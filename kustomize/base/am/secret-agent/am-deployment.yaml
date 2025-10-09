@@ -57,6 +57,9 @@ spec:
             sources:
               - secret:
                   name: ds-ssl-keypair
+              - secret:
+                  name: platform-truststore-certificates
+                  optional: true
         - name: new-truststore
           emptyDir: {}
         - name: am-logback
