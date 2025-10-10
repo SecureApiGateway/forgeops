@@ -179,15 +179,25 @@ def select_tag(component, releases, release, image_names, tag=None, all_tags=Fal
         maj_min = f"{selected_release.major}.{selected_release.minor}"
     if debug:
         print(f"maj_min = {maj_min}")
+    print(f"all_tags = {all_tags}")
+    print(f"debug = {debug}")
     if all_tags:
         selected_tag = releases[component][maj_min][selected_release_str]['tags']
     elif tag in releases[component][maj_min][selected_release_str]['tags']:
         selected_tag = tag
     else:
         selected_tag = releases[component][maj_min][selected_release_str]['tags'][-1]
+    print(f"component = {component}")
+    print(f"maj_min = {maj_min}")
+    print(f"selected_release_str = {selected_release_str}")
+    print(f"releases_component = {releases[component]}")
+    print(f"releases_maj_min = {releases[component][maj_min]}")
+    print(f"releases_selected_release_str = {releases[component][maj_min][selected_release_str]}")
     if 'component_name' in releases[component][maj_min][selected_release_str]:
         image_names[component] = releases[component][maj_min][selected_release_str]['component_name']
 
+    print(f"selected_tag = {selected_tag}")
+    print(f"image_names = {image_names}")
     return selected_tag, image_names
 
 

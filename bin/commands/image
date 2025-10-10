@@ -91,7 +91,9 @@ def update_image_defaulter(images, overlay_path):
         image = f"{images[image_name]['image']['repository']}"
         if 'tag' in images[image_name]['image'].keys():
             image = f"{image}:{images[image_name]['image']['tag']}"
+
         cmd_args = f"edit set image '{image_name}={image}'"
+        print(cmd_args)
         utils.run('kustomize', cmd_args, cwd=f"{overlay_path}/image-defaulter")
 
 
@@ -222,6 +224,8 @@ examples:
         update_config_images = False
         if args.release:
             update_docker_files = True
+    print(f"update_config_images: [{update_config_images}]")
+    print(f"update_docker_files: [{update_docker_files}]")
 
     releases = {}
     release = {}
@@ -259,7 +263,9 @@ examples:
                 images_kustomize[component] = set_image(component, tag, repo)
             else:
                 values_images[component.replace('-', '_')] = set_image(component, tag, repo)
+                print(f"values_images = {values_images[component.replace('-', '_')]}")
                 images_kustomize[component] = set_image(component, tag, repo)
+                print(f"images_kustomize = {images_kustomize[component]}")
 
     if overrides['do_kustomize']:
         utils.check_path(kustomize_path, 'Kustomize path', 'dir')
