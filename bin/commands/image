@@ -227,6 +227,7 @@ examples:
     print(f"update_config_images: [{update_config_images}]")
     print(f"update_docker_files: [{update_docker_files}]")
 
+    image_names = copy(BASE_IMAGE_NAMES)
     releases = {}
     release = {}
     release_tags = {}
@@ -241,7 +242,6 @@ examples:
 
         releases = get_releases(releases_src, components)
         release = parse_release_str(args.release)
-        image_names = copy(BASE_IMAGE_NAMES)
         for c in components:
             release_tags[c], image_names = select_tag(c, releases, release, image_names, tag=args.tag, debug=args.debug)
 
@@ -258,13 +258,13 @@ examples:
             if args.release:
                 tag = 'dev' if args.release == 'dev' else release_tags[component]
             if component == 'ds':
-                values_images['ds_cts'] = set_image(component, tag, repo)
-                values_images['ds_idrepo'] = set_image(component, tag, repo)
-                images_kustomize[component] = set_image(component, tag, repo)
+                values_images['ds_cts'] = set_image(image_names[component], tag, repo)
+                values_images['ds_idrepo'] = set_image(image_names[component], tag, repo)
+                images_kustomize[component] = set_image(image_names[component], tag, repo)
             else:
-                values_images[component.replace('-', '_')] = set_image(component, tag, repo)
+                values_images[component.replace('-', '_')] = set_image(image_names[component], tag, repo)
                 print(f"values_images = {values_images[component.replace('-', '_')]}")
-                images_kustomize[component] = set_image(component, tag, repo)
+                images_kustomize[component] = set_image(image_names[component], tag, repo)
                 print(f"images_kustomize = {images_kustomize[component]}")
 
     if overrides['do_kustomize']:
