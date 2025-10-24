@@ -14,7 +14,7 @@ metadata:
     app: am
     app.kubernetes.io/component: am
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: identity-platform
@@ -182,7 +182,7 @@ spec:
             limits:
               memory: 3500Mi
             requests:
-              cpu: 250m
+              cpu: 500m
               memory: 3500Mi
           volumeMounts:
             - name: new-truststore

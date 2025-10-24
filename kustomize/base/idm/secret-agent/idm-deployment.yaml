@@ -14,7 +14,7 @@ metadata:
     app: idm
     app.kubernetes.io/component: idm
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: identity-platform
@@ -201,7 +201,7 @@ spec:
             limits:
               memory: 1280Mi
             requests:
-              cpu: 250m
+              cpu: 500m
               memory: 1280Mi
           volumeMounts:
             - mountPath: /var/run/secrets/idm
