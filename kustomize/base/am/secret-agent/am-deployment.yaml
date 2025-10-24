@@ -14,7 +14,7 @@ metadata:
     app: am
     app.kubernetes.io/component: am
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: identity-platform
