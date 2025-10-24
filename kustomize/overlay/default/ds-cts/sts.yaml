@@ -4,7 +4,7 @@ kind: StatefulSet
 metadata:
   name: ds-cts
 spec:
-  replicas: 3
+  replicas: 1
   template:
     spec:
       containers:
