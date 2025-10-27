@@ -32,7 +32,7 @@ definition into the `am` sub overlay in your custom overlay.
             - hosts:
                 - my.first.fqdn.com
                 - my.second.fqdn.com
-              secretName: tls-identity-platform.domain.local
+              secretName: sslcert
         rules:
             - host: my.first.fqdn.com
               http:

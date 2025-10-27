@@ -107,8 +107,10 @@ spec:
               value: /usr/lib/ssl/cert.pem
             - name: IDM_PEM_TRUSTSTORE_DS
               value: /var/run/secrets/truststore/ca.crt
-            - name: IDM_PEM_TRUSTSTORE_EXTRA
-              value: /var/run/secrets/truststore/certificates
+            - name: IDM_PEM_TRUSTSTORE_EXTRA_ROOT
+              value: /var/run/secrets/truststore/root.pem
+            - name: IDM_PEM_TRUSTSTORE_EXTRA_ISSUING
+              value: /var/run/secrets/truststore/issuing.pem
       containers:
         - name: openidm
           securityContext: {}
