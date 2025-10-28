@@ -13,4 +13,3 @@ resources:
   - ./admin-ui
   - ./end-user-ui
   - ./login-ui
-  - ./image-defaulter
