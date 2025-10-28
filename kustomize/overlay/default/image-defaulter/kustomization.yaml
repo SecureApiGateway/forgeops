@@ -3,8 +3,8 @@ kind: Component
 apiVersion: kustomize.config.k8s.io/v1alpha1
 images:
   - name: am
-    newName: gcr.io/forgerock-io/am-cdk/docker-build
-    newTag: 8.0.2-latest-postcommit
+    newName: us-docker.pkg.dev/forgeops-public/images/am
+    newTag: latest
   - name: amster
     newName: us-docker.pkg.dev/forgeops-public/images/amster
     newTag: latest
