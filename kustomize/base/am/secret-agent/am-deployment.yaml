@@ -75,7 +75,11 @@ spec:
             defaultMode: 0755
       initContainers:
         - name: fbc-init
+<<<<<<< Updated upstream
           image: am
+=======
+          image: gcr.io/forgerock-io/am-cdk/docker-build:8.0.2-25c2c49af943e6e6f9716fddf41f070f288f9a30
+>>>>>>> Stashed changes
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - mountPath: /fbc
@@ -98,7 +102,11 @@ spec:
                 cp /fbc/config/boot.json /fbc/default-boot.json
               fi
         - name: truststore-init
+<<<<<<< Updated upstream
           image: am
+=======
+          image: gcr.io/forgerock-io/am-cdk/docker-build:8.0.2-25c2c49af943e6e6f9716fddf41f070f288f9a30
+>>>>>>> Stashed changes
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: new-truststore
@@ -126,7 +134,11 @@ spec:
       containers:
         - name: openam
           securityContext: {}
+<<<<<<< Updated upstream
           image: am
+=======
+          image: gcr.io/forgerock-io/am-cdk/docker-build:8.0.2-25c2c49af943e6e6f9716fddf41f070f288f9a30
+>>>>>>> Stashed changes
           imagePullPolicy: IfNotPresent
           command:
             - bash
